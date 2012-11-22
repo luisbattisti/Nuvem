@@ -50,11 +50,15 @@ svgBubbleGen:: Int -> Int -> [Int] -> [String]
 svgBubbleGen w h dataset = [svgCircle ((fromIntegral w/2, fromIntegral h/2), 10.0)]
 
 
+circulos :: [Circle]
+circulos = [((10,10),10), ((20,20),25), ((25,25),30)]
+
+
 -- Gera string representando um circulo em SVG. A cor do circulo esta fixa. 
 -- TODO: Alterar esta funcao para mostrar um circulo de uma cor fornecida como parametro.
 svgCircle :: Circle -> String
 svgCircle ((x,y),r) = printf "<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"rgb(255,50,10)\" />\n" x y r
-
+                    
 
 -- Configura o viewBox da imagem e coloca retangulo branco no fundo
 svgViewBox :: Int -> Int -> String
@@ -62,3 +66,8 @@ svgViewBox w h =
         printf  "<svg width=\"%d\" height=\"%d\" viewBox=\"0 0 %d %d\"" w h w h ++ 
                 " version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" ++
         printf "<rect x=\"0\" y=\"0\" width=\"%d\" height=\"%d\" style=\"fill:white;\"/>\n" w h
+        
+ 
+--Calcula a distância entre dois pontos - sqrt (x1 - x2)² + (y1 - y2)² 
+distancia :: Circle -> Circle -> Float
+distancia ((x1,y1),_) ((x2,y2),_) = sqrt (((x1 - x2)^2) + ((y1 - y2)^2))

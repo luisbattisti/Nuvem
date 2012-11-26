@@ -2,5 +2,14 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="360" height="360" viewBox="0 0 360 360" version="1.1" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="360" height="360" style="fill:white;"/>
-<circle cx="180.0" cy="180.0" r="10.0" fill="rgb(cor,cor,cor)" />
+<circle cx="180.0" cy="180.0" r="5.0" fill="rgb(51,133,68)" />
+<circle cx="180.0" cy="180.0" r="10.0" fill="rgb(158,156,118)" />
+<circle cx="180.0" cy="180.0" r="15.0" fill="rgb(119,59,245)" />
+<circle cx="180.0" cy="180.0" r="20.0" fill="rgb(27,178,11)" />
+<circle cx="180.0" cy="180.0" r="25.0" fill="rgb(26,20,207)" />
+<circle cx="180.0" cy="180.0" r="30.0" fill="rgb(110,255,77)" />
+<circle cx="180.0" cy="180.0" r="35.0" fill="rgb(123,42,130)" />
+<circle cx="180.0" cy="180.0" r="40.0" fill="rgb(73,27,82)" />
+<circle cx="180.0" cy="180.0" r="45.0" fill="rgb(189,200,100)" />
+<circle cx="180.0" cy="180.0" r="50.0" fill="rgb(161,241,166)" />
 </svg>

@@ -26,11 +26,11 @@ main = do
         strcontent <- readFile infile
         let pairs = map (span (/= ' ')) (lines strcontent)
             freqs = readInts (map snd pairs)
-        writeFile outfile (svgCloudGen imageWidth imageHeight freqs)
+        writeFile outfile (svgCloudGen imageWidth imageHeight (reverse (sort(freqs))))
         putStrLn "Ok!"
         where 
                 infile = "dataset.txt"
-                outfile = "tagcloud.svg"
+                outfile = "tagcloud.svg" 
 
 
 -- Transforma lista de strings em lista de inteiros
@@ -45,31 +45,27 @@ svgCloudGen w h dataset =
         "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n" ++
         (svgViewBox w h) ++
         (concat (svgBubbleGen w h dataset)) ++ "</svg>\n"
-
         
+        
+cor :: IO Int
+cor = randomRIO (0, 255 :: Int)
+
+ioIntToInt :: IO Int -> Int
+ioIntToInt nro = unsafePerformIO nro
+
+
 -- Esta funcao deve gerar a lista de circulos em formato SVG.
 -- A implementacao atual eh apenas um teste que gera um circulo posicionado no meio da figura.
 -- TODO: Alterar essa funcao para usar os dados do dataset.
 svgBubbleGen:: Int -> Int -> [Int] -> [String]
-svgBubbleGen w h dataset = map svgCircle [((fromIntegral w/2, fromIntegral h/2), raios (dataset))]
-
-
-raios :: [Int] -> [Float]
-raios [] = []
-raios dataset = head (map (fromIntegral) (dataset))/50 : raios (tail dataset)
-
-
--- gera um numero aleatorio de 0 até 255        
-randomcor :: IO Int
-randomcor = randomRIO (0, 255 :: Int)
+svgBubbleGen w h dataset = map svgCircle [((fromIntegral w/2, fromIntegral h/2), 10.0)]
 
 
 -- Gera string representando um circulo em SVG. A cor do circulo esta fixa. 
 -- TODO: Alterar esta funcao para mostrar um circulo de uma cor fornecida como parametro.
 svgCircle :: Circle -> String
-svgCircle ((x,y),r) = printf "<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"rgb(%d,%d,%d)\" />\n" x y r (unsafePerformIO randomcor) (unsafePerformIO randomcor) (unsafePerformIO randomcor) 
---unsafePerformIO converte arquivos IO a -> a. 
-
+svgCircle ((x,y),r) = printf "<circle cx=\"%f\" cy=\"%f\" r=\"%f\" fill=\"rgb(r,g,b)\" />\n" x y r
+                    
 
 -- Configura o viewBox da imagem e coloca retangulo branco no fundo
 svgViewBox :: Int -> Int -> String

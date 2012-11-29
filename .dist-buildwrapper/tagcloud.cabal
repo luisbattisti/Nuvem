@@ -9,6 +9,7 @@ executable tagcloud
   main-is:         Main.hs
   build-depends:   
                    base >= 4,
-                   random
+                   random,
+                   QuickCheck
   ghc-options:     -Wall
 
